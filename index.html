@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AIR PORT Photobooth — Retro Boarding Pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@500;700&family=Work+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="board-bg" id="boardBg"></div>
+
+<div class="app">
+
+  <!-- ===== SCREEN 1: SETUP ===== -->
+  <section class="screen active" id="screen-setup">
+    <div class="desk-card">
+      <div class="stamp-circle" aria-hidden="true">
+        <span>SUB &middot; AIRPORT &middot; JKT</span>
+      </div>
+      <h1 class="type-title" id="typeTitle"></h1>
+      <p class="hand-note">isi 4 kotak foto, tempel jadi boarding pass kenanganmu &#9992;</p>
+
+      <div class="template-row" id="templatePicker">
+        <button class="stub maroon-stub selected" data-template="maroon" type="button">
+          <span class="tape tape-yellow" aria-hidden="true"></span>
+          <span class="stub-label">MAROON</span>
+          <span class="stub-sub">CLASS</span>
+        </button>
+        <button class="stub navy-stub" data-template="navy" type="button">
+          <span class="tape tape-pink" aria-hidden="true"></span>
+          <span class="stub-label">NAVY</span>
+          <span class="stub-sub">CLASS</span>
+        </button>
+      </div>
+
+      <div class="typed-field">
+        <label for="nameInput">NAMA PENUMPANG</label>
+        <input id="nameInput" maxlength="18" placeholder="NAMA ANDA">
+      </div>
+
+      <button class="stamp-btn" id="startBtn">MULAI CHECK-IN</button>
+      <p class="tiny-note">butuh izin kamera &middot; semua foto diproses di perangkatmu sendiri</p>
+    </div>
+  </section>
+
+  <!-- ===== SCREEN 2: CAMERA ===== -->
+  <section class="screen" id="screen-camera">
+    <div class="camera-top">
+      <p class="typewriter-status" id="statusText"></p>
+      <div class="sprocket-dots" id="slotDots"></div>
+    </div>
+
+    <div class="camera-body">
+      <div class="camera-lensring" aria-hidden="true"></div>
+      <div class="viewfinder">
+        <video id="video" autoplay playsinline muted></video>
+        <div class="frame-corners" aria-hidden="true"></div>
+        <div class="flash" id="flash"></div>
+        <div class="countdown" id="countdownEl"></div>
+      </div>
+      <div class="camera-strap" aria-hidden="true"></div>
+    </div>
+
+    <div class="film-strip" id="filmStrip"></div>
+
+    <div class="camera-controls">
+      <div class="filter-row" id="filterRow">
+        <button class="filter-chip active" data-filter="none" type="button">Normal</button>
+        <button class="filter-chip" data-filter="grayscale(1)" type="button">B&amp;W</button>
+        <button class="filter-chip" data-filter="sepia(.55) saturate(1.4)" type="button">Vintage</button>
+        <button class="filter-chip" data-filter="saturate(1.9) contrast(1.12)" type="button">Vivid</button>
+      </div>
+      <div class="control-buttons">
+        <button class="icon-btn" id="flipBtn" type="button" title="Ganti kamera">&#8635;</button>
+        <button class="shutter-btn" id="shutterBtn" type="button" title="Ambil foto" aria-label="Ambil foto"><span>KLIK</span></button>
+        <button class="icon-btn" id="cancelBtn" type="button" title="Batalkan sesi">&#10005;</button>
+      </div>
+      <p class="tiny-note" id="camHint">Tekan tombol merah untuk hitung mundur 3 detik.</p>
+    </div>
+  </section>
+
+  <!-- ===== SCREEN 3: RESULT ===== -->
+  <section class="screen" id="screen-result">
+    <h2 class="type-title small" id="resultTitle"></h2>
+
+    <div class="ticket-wrap">
+      <div class="ticket" id="ticket"></div>
+    </div>
+
+    <div class="result-actions">
+      <button class="stamp-btn" id="downloadBtn">DOWNLOAD TIKET &#8595;</button>
+      <div class="row">
+        <button class="ghost-btn" id="retakeBtn" type="button">Ambil Ulang Semua</button>
+        <button class="ghost-btn" id="changeTemplateBtn" type="button">Ganti Desain</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="credit">dibuat untuk momen keberangkatanmu &middot; SUB &#9992; JKT</footer>
+</div>
+
+<canvas id="captureCanvas" style="display:none"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
